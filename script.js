@@ -147,11 +147,16 @@ window.addEventListener("load",()=>{
 
 })
 
+for (let postcard of postcards){
+    const itemElement = document.createElement("div");
+    itemElement.addEventListener("click", ()=>{
+        activatePopUp(postcard);
+    })
+    itemElement.innerHTML = buildPostcardListItem(postcard);
 
+    container.appendChild(itemElement);
+    }
 
-function displayData(postcards){
-    var container = document.getElementById('output-container'); 
-    
     const activatePopUp = function(postcard){
 
 
@@ -163,6 +168,10 @@ function displayData(postcards){
      popUpDetails.innerHTML = buildPostcardDetailItem(postcard);
         
     }
+
+function displayData(postcards){
+    var container = document.getElementById('output-container'); 
+    
     
 
     const buildPostcardListItem = function(postcard){
