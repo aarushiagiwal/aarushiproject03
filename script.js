@@ -147,13 +147,35 @@ window.addEventListener("load",()=>{
 
 })
 
+
+
 function displayData(postcards){
-    var container = document.getElementById('output-container');  
+    var container = document.getElementById('output-container'); 
+    
+    const activatePopUp = function(postcard){
+
+
+        console.log(postcard);
+        document.getElementById("output-container").classList += 'activate';
+        var popUp = document.getElementById("popup");
+        popUp.style.display = "block";
+        var popUpDetails = document.getElementById("pop-up-details");
+     popUpDetails.innerHTML = buildPostcardDetailItem(postcard);
+        
+    }
+    
 
     const buildPostcardListItem = function(postcard){
         return `<div class="container">
         <img class="image" src = '${postcard.imagefront}'/>  
         <p class="year">${postcard.year}<p/>  
+        </div>`;
+    }
+
+    const buildPostcardDetailItem = function(postcard){
+        return `<div class="detail-view">
+        <img class="detailimg" src = '${postcard.imagefront}'/> 
+    
         </div>`;
     }
 
@@ -165,3 +187,4 @@ function displayData(postcards){
     const initialEnvelope = document.getElementById('initial-envelope')
 initialEnvelope.style.display = "none"
 }
+
