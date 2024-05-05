@@ -150,28 +150,10 @@ window.addEventListener("load", () => {
 // unecessarily. All of your looping code should be inside
 // your displayData function inside the forEach loop that's already set up.
 
-for (let postcard of postcards) {
-
-
-  // This chunk should all be happening in the forEach loop in your displayData 
-  // function instead of the one line that's in there now.
-  const itemElement = document.createElement("div");
-  itemElement.addEventListener("click", () => {
-    activatePopUp(postcard);
-  });
-  itemElement.innerHTML = buildPostcardListItem(postcard);
-
-  container.appendChild(itemElement);
-
-
-}
-
 function displayData(postcards) {
   var container = document.getElementById("output-container");
 
   const activatePopUp = function (postcard) {
-    console.log(postcard);
-    document.getElementById("output-container").classList += "activate";
     var popUp = document.getElementById("popup");
     popUp.style.display = "block";
     var popUpDetails = document.getElementById("pop-up-details");
@@ -193,7 +175,16 @@ function displayData(postcards) {
   };
 
   postcards.forEach((postcard) => {
-    container.innerHTML += buildPostcardListItem(postcard);
+    //  Here in this loop is where we iterate over the array of postcard items 
+    //  buildPostCardListItem is no longer undefined because it's under the definition of the function
+    
+    const itemElement = document.createElement("div");
+    itemElement.addEventListener("click", () => {
+      activatePopUp(postcard);
+    });
+    itemElement.innerHTML = buildPostcardListItem(postcard);
+
+    container.appendChild(itemElement);
   });
 
   const initialEnvelope = document.getElementById("initial-envelope");
